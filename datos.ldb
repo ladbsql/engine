@@ -1,0 +1,12 @@
+{
+    "organizations": {
+        "records": [
+            {
+                "id": 1,
+                "name": "OpenAI"
+            }
+        ],
+        "primary_key": "id",
+        "foreign_keys": {}
+    }
+}
