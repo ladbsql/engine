@@ -1,0 +1,48 @@
+{
+    "usuarios": {
+        "records": [
+            {
+                "rut": "12345678-9",
+                "nombre": "Juan Perez",
+                "email": "juan.perez@example.com"
+            },
+            {
+                "rut": "1232192-2",
+                "nombre": "John Doe",
+                "email": "jhon.doe@example.com"
+            },
+            {
+                "rut": "21932498-7",
+                "nombre": "Dami\u00e1n Panes",
+                "email": "damian.panes@example.com"
+            },
+            {
+                "rut": "21986242-3",
+                "nombre": "Siboney Parra",
+                "email": "siboney.parra@example.com"
+            }
+        ],
+        "primary_key": "rut",
+        "foreign_keys": {}
+    },
+    "organizaciones": {
+        "records": [
+            {
+                "id": 1,
+                "nombre": "Mi organizaci\u00f3n",
+                "direccion": "Calle 123",
+                "telefono": "1234567890",
+                "email": "organizacion@ejemplo.com"
+            },
+            {
+                "id": 2,
+                "nombre": "Otra organizacion",
+                "direccion": "Calle 321",
+                "telefono": "14213242232",
+                "email": "organizacion2@ejemplo.com"
+            }
+        ],
+        "primary_key": "id",
+        "foreign_keys": {}
+    }
+}

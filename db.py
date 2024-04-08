@@ -1,23 +1,31 @@
 import json
 
 class LaDB:
-  def __init__(self, file='datos.ldb'):
-    self.file = file
+  def __init__(self, filename='datos.ldb'):
+    self.filename = filename
+    self.filepath = f'./databases/{self.filename}'
     self.data = self.load_data()
+    if not self.data:
+      self.data = {}
+      self.save_data()
 
   def load_data(self):
-    try:
-      with open(self.file, 'r') as file:
-        return json.load(file)
-    except FileNotFoundError:
-      return {}
-    except json.JSONDecodeError:
-      print("Warning: Error decoding data. Initializing with empty data.")
-      return {}
+        try:
+            with open(self.filepath, 'r') as file:
+                return json.load(file)
+        except FileNotFoundError:
+            print(f"Archivo {self.filepath} no encontrado.")
+            return {}
+        except json.JSONDecodeError as e:
+            print(f"Error al decodificar JSON en {self.filepath}: {e}")
+            return {}
 
   def save_data(self):
-    with open(self.file, 'w') as file:
+    with open(self.filepath, 'w') as file:
       json.dump(self.data, file, indent=4)
+
+  def list_tables(self):
+        return list(self.data.keys())
 
   def create_table(self, table_name, primary_key = None, foreign_keys = None):
     if table_name not in self.data:
@@ -74,6 +82,18 @@ class LaDB:
       results = results[:limit]
 
     return results
+  
+  def get_tables_info(self):
+        tables_info = []
+        for table_name, table_data in self.data.items():
+            # Asumiendo que `table_data` es un diccionario que incluye una clave 'records'
+            record_count = len(table_data.get('records', []))
+            tables_info.append({
+                'name': table_name,
+                'record_count': record_count
+            })
+        return tables_info
+
   def drop(self, table_name):
     if table_name in self.data:
       del self.data[table_name]
